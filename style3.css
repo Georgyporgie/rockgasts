@@ -57,4 +57,31 @@
 } 
 
 
+/* Blinking effect */
+@keyframes blinker {
+  0%   { opacity: 1; }
+  50%  { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.blink {
+  animation: blinker 1.5s linear infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.05); }
+}
+.pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes glowBlink {
+  0%, 100% { opacity: 1; filter: drop-shadow(0 0 4px cyan); }
+  50%      { opacity: 0.6; filter: drop-shadow(0 0 12px magenta); }
+}
+.glow-blink {
+  animation: glowBlink 2s ease-in-out infinite;
+}
+
 
