@@ -1,79 +1,85 @@
 <!DOCTYPE html>
-
-
 <html>
 <head>
-<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
-<title>   </title>
-<link rel="stylesheet" href="style3.css" >
-
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  <title></title>
+  <link rel="stylesheet" href="style3.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-<br>
-<br>
-<br>
-<br>
+  <br><br><br><br>
 
-  <img id= "myImage">
-<p id="timeMessage"></p>
+  <img id="myImage" alt="">
+  <p id="timeMessage"></p>
 
   <script>
-     function updateImage() {
-    const timeMessage = document.getElementById("timeMessage"); 
-    const img = document.getElementById("myImage");
-    const now = new Date();
-    const hour = now.getHours();
-    const day = now.getDay();
+    function updateImage() {
+      const timeMessage = document.getElementById("timeMessage"); 
+      const img = document.getElementById("myImage");
+      const now = new Date();
+      const hour = now.getHours();
+      const day = now.getDay();
 
-    // Adjusted weekend logic
-    const isWeekend = (day === 6 || day === 0) || (day === 5 && hour >= 18) || (day === 0 && hour < 21);
+      const isWeekend =
+        (day === 6 || day === 0) ||
+        (day === 5 && hour >= 18) ||
+        (day === 0 && hour < 21);
 
-    if (isWeekend) {
+      // helper for blink control (text only)
+      function textBlink(shouldBlink) {
+        if (shouldBlink) {
+          timeMessage.classList.add('blink');
+        } else {
+          timeMessage.classList.remove('blink');
+        }
+      }
+
+      if (isWeekend) {
         if (hour >= 7 && hour < 12) {
-            img.src = 'images/aquarium3.gif'; 
-            timeMessage.textContent = "Good morning!";
+          img.src = 'images/aquarium3.gif'; 
+          timeMessage.textContent = "Good morning!";
+          textBlink(false);
         } else if (hour >= 12 && hour < 17) {
-            img.src = 'images/Bjorn Hamburger.png';
-            timeMessage.textContent = " Björn Hamburger Live!";
+          img.src = 'images/DJ Saphire good vibes.jpg';
+          timeMessage.textContent = "Sapphire Live!";
+          textBlink(true);
         } else if (hour >= 17 && hour < 21) {
-            img.src = 'images/Bjorn Hamburger.png';
-            timeMessage.textContent = "Björn Hamburger Live!";
-        
-                } else if (hour >= 21 && hour < 23) {
-            img.src = 'images/Sunny rock.gif';
-            timeMessage.textContent = "The Hillbillies!";
-        
+          img.src = 'images/DJ Saphire2.png';
+          timeMessage.textContent = "Sapphire Live!";
+          textBlink(true);
+        } else if (hour >= 21 && hour < 23) {
+          img.src = 'images/Miss Chang.png';
+          timeMessage.textContent = "Chang Again!";
+          textBlink(false);
         } else {
-            img.src = 'images/aquarium.png';
-            timeMessage.textContent = "Good Night!";
+          img.src = 'images/aquarium.png';
+          timeMessage.textContent = "Good Night!";
+          textBlink(false);
         }
-    } else {
+      } else {
         if (hour >= 7 && hour < 12) {
-            img.src = 'images/transparent.png';
-            timeMessage.textContent = "Good morning!";
+          img.src = 'images/transparent.png';
+          timeMessage.textContent = "Good morning!";
+          textBlink(false);
         } else if (hour >= 12 && hour < 17) {
-            img.src = 'images/aquarium.png';
-            timeMessage.textContent = "Afternoon vibes!";
+          img.src = 'images/aquarium.png';
+          timeMessage.textContent = "Afternoon vibes!";
+          textBlink(false);
         } else if (hour >= 17 && hour < 23) {
-            img.src = 'images/transparent.png';
-            timeMessage.textContent = "Evening mood!";
+          img.src = 'images/transparent.png';
+          timeMessage.textContent = "Evening mood!";
+          textBlink(true);
         } else {
-            img.src = 'images/aquarium3.gif';
-            timeMessage.textContent = "Night reflections!";
+          img.src = 'images/aquarium3.gif';
+          timeMessage.textContent = "Night reflections!";
+          textBlink(false);
         }
+      }
     }
-}
 
-// Call the updateImage function when the page loads
-window.onload = updateImage;
-
-// Update the image every hour
-setInterval(updateImage, 3600000);
-
-</script>
+    window.onload = updateImage;
+    setInterval(updateImage, 3600000);
+  </script>
 </body>
-
-
 </html>
