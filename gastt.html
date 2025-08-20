@@ -13,71 +13,74 @@
   <img id="myImage" alt="">
   <p id="timeMessage"></p>
 
-  <script>
-    function updateImage() {
-      const timeMessage = document.getElementById("timeMessage"); 
-      const img = document.getElementById("myImage");
+function updateImage() {
+  const timeMessage = document.getElementById("timeMessage");
+  const img = document.getElementById("myImage");
 
- const now = new Date();
-      const hour = now.getHours();
-      const day = now.getDay();
+  // Set a placeholder path to use if the main image can't be loaded
+  const placeholder = "images/transparent.png";
 
-      const isWeekend =
-        (day === 6 || day === 0) ||
-        (day === 5 && hour >= 18) ||
-        (day === 0 && hour < 21);
+  // Whenever the image fails to load, swap to the placeholder
+  img.onerror = function () {
+    img.src = placeholder;
+  };
 
-      // helper for blink control (text only)
-      function textBlink(shouldBlink) {
-        if (shouldBlink) {
-          timeMessage.classList.add('blink');
-        } else {
-          timeMessage.classList.remove('blink');
-        }
-      }
+  const now = new Date();
+  const hour = now.getHours();
+  const day = now.getDay();
 
-      if (isWeekend) {
-        if (hour >= 7 && hour < 12) {
-          img.src = 'images/aquarium3.gif'; 
-          timeMessage.textContent = "Good morning!";
-          textBlink(false);
-        } else if (hour >= 12 && hour < 17) {
-          img.src = 'images/Sunny rock.gif';
-          timeMessage.textContent = "Hillbillies!";
-          textBlink(true);
-        } else if (hour >= 17 && hour < 21) {
-          img.src = 'images/Bjorn Hamburger.png';
-          timeMessage.textContent = "Bjorn Hamburger";
-          textBlink(true);
-        } else if (hour >= 21 && hour < 23) {
-          img.src = 'images/Sunny rock.gif';
-          timeMessage.textContent = "Hillbillies!";
-          textBlink(true);
-        } else {
-          img.src = 'images/aquarium.png';
-          timeMessage.textContent = "Good Night!";
-          textBlink(false);
-        }
-      } else {
-        if (hour >= 7 && hour < 12) {
-          img.src = 'images/transparent.png';
-          timeMessage.textContent = "Good morning!";
-          textBlink(false);
-        } else if (hour >= 12 && hour < 17) {
-          img.src = 'images/aquarium.png';
-          timeMessage.textContent = "Afternoon vibes!";
-          textBlink(false);
-        } else if (hour >= 17 && hour < 23) {
-          img.src = 'images/transparent.png';
-          timeMessage.textContent = "Evening mood!";
-          textBlink(true);
-        } else {
-          img.src = 'transparent.png';
-          timeMessage.textContent = "Night reflections!";
-          textBlink(false);
-        }
-      }
+  const isWeekend =
+    day === 6 || day === 0 ||
+    (day === 5 && hour >= 18) ||
+    (day === 0 && hour < 21);
+
+  function textBlink(shouldBlink) {
+    timeMessage.classList.toggle('blink', shouldBlink);
+  }
+
+  if (isWeekend) {
+    if (hour >= 7 && hour < 12) {
+      img.src = 'images/aquarium3.gif';
+      timeMessage.textContent = "Good morning!";
+      textBlink(false);
+    } else if (hour >= 12 && hour < 17) {
+      img.src = 'images/Sunny rock.gif';
+      timeMessage.textContent = "Hillbillies!";
+      textBlink(true);
+    } else if (hour >= 17 && hour < 21) {
+      img.src = 'images/Bjorn Hamburger.png';
+      timeMessage.textContent = "Bjorn Hamburger";
+      textBlink(true);
+    } else if (hour >= 21 && hour < 23) {
+      img.src = 'images/Sunny rock.gif';
+      timeMessage.textContent = "Hillbillies!";
+      textBlink(true);
+    } else {
+      img.src = 'images/aquarium.png';
+      timeMessage.textContent = "Good Night!";
+      textBlink(false);
     }
+  } else {
+    if (hour >= 7 && hour < 12) {
+      img.src = 'images/transparent.png';
+      timeMessage.textContent = "Good morning!";
+      textBlink(false);
+    } else if (hour >= 12 && hour < 17) {
+      img.src = 'images/aquarium.png';
+      timeMessage.textContent = "Afternoon vibes!";
+      textBlink(false);
+    } else if (hour >= 17 && hour < 23) {
+      img.src = 'images/transparent.png';
+      timeMessage.textContent = "Evening mood!";
+      textBlink(true);
+    } else {
+      img.src = 'images/transparent.png';
+      timeMessage.textContent = "Night reflections!";
+      textBlink(false);
+    }
+  }
+}
+
 
     window.onload = updateImage;
     setInterval(updateImage, 3600000);
@@ -88,6 +91,7 @@
 
 </body>
 </html>
+
 
 
 
