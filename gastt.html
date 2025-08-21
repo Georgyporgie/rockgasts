@@ -9,7 +9,7 @@
 </head>
 <body>
   <br><br><br><br>
-
+  <img id="kroonImage" alt="">
   <img id="myImage" alt="">
   <p id="timeMessage"></p>
 <script>
@@ -87,10 +87,17 @@ function updateImage() {
   
 
 </script>
+<script>
+//Get our img element by using document.getElementById
+var img = document.getElementById("kroonImage");
 
+//Set the src property of our element to the new image URL
+img.src = 'images/crown2.png';
+</script>
 
 </body>
 </html>
+
 
 
 
