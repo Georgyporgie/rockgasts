@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,33 +11,33 @@
 <body>
   <br><br><br><br>
   <img id="kroonImage" alt="">
-  <br>
-  <br>
-  
-  
   <img id="myImage" alt="">
   <p id="timeMessage"></p>
-<script>
-function updateImage() {
-  const timeMessage = document.getElementById("timeMessage");
-  const img = document.getElementById("myImage");
-  const kroon = document.getElementById("kroonImage");
 
-  const placeholder = "images/transparent.png";
-  img.onerror = () => { img.src = placeholder; };
+  <script>
+    function updateImage() {
+      const timeMessage = document.getElementById("timeMessage"); 
+      const img = document.getElementById("myImage");
 
-  const now = new Date();
-  const hour = now.getHours();
-  const day = now.getDay();
+ const now = new Date();
+      const hour = now.getHours();
+      const day = now.getDay();
 
-  const isWeekend =
-    day === 6 || day === 0 ||
-    (day === 5 && hour >= 18) ||
-    (day === 0 && hour < 23);
+      const isWeekend =
+        (day === 6 || day === 0) ||
+        (day === 5 && hour >= 18) ||
+        (day === 0 && hour < 21);
 
-  let djActive = false;
+      // helper for blink control (text only)
+      function textBlink(shouldBlink) {
+        if (shouldBlink) {
+          timeMessage.classList.add('blink');
+        } else {
+          timeMessage.classList.remove('blink');
+        }
+      }
 
-  if (isWeekend) {
+       if (isWeekend) {
     if (hour >= 7 && hour < 12) {
       img.src = 'images/aquarium3.gif';
       timeMessage.textContent = "Good Morning!";
@@ -73,23 +74,18 @@ function updateImage() {
     }
   }
 
-  // 🔴 ON AIR lamp logic
-  kroon.src = djActive ? 'images/on air.gif' : 'images/on air.png';
-}
-
 </script>
 
+<script>
+//Get our img element by using document.getElementById
+var img = document.getElementById("kroonImage");
 
-
-
+//Set the src property of our element to the new image URL
+img.src = 'images/crown2.png';
+</script>
 
 </body>
 </html>
-
-
-
-
-
 
 
 
