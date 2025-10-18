@@ -1,33 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
-  <title></title>
-  <link rel="stylesheet" href="style3.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-  <br><br><br><br>
-  <img id="kroonImage" alt="">
-  <br>
-  <br>
-  
-  
-  <img id="myImage" alt="">
-  <p id="timeMessage"></p>
 <script>
 function updateImage() {
   const timeMessage = document.getElementById("timeMessage");
   const img = document.getElementById("myImage");
+  const kroon = document.getElementById("kroonImage");
 
-  // Set a placeholder path to use if the main image can't be loaded
   const placeholder = "images/transparent.png";
-
-  // Whenever the image fails to load, swap to the placeholder
-  img.onerror = function () {
-    img.src = placeholder;
-  };
+  img.onerror = () => { img.src = placeholder; };
 
   const now = new Date();
   const hour = now.getHours();
@@ -42,77 +20,49 @@ function updateImage() {
     timeMessage.classList.toggle('blink', shouldBlink);
   }
 
+  let djActive = false; // flag to decide ON AIR lamp
+
   if (isWeekend) {
     if (hour >= 7 && hour < 12) {
       img.src = 'images/aquarium3.gif';
       timeMessage.textContent = "Good Morning!";
-      textBlink(false);
+      djActive = true;
     } else if (hour >= 12 && hour < 17) {
       img.src = 'images/Sunny rock.gif';
       timeMessage.textContent = "Hillbillies!";
-      textBlink(true);
+      djActive = true;
     } else if (hour >= 17 && hour < 21) {
       img.src = 'images/Bjorn Hamburger.png';
       timeMessage.textContent = "Björn Hamburger";
-      textBlink(true);
+      djActive = true;
     } else if (hour >= 21 && hour < 23) {
       img.src = 'images/Sunny rock.gif';
       timeMessage.textContent = "Hillbillies!";
-      textBlink(true);
+      djActive = true;
     } else {
       img.src = 'images/aquarium.png';
       timeMessage.textContent = "Good night!";
-      textBlink(false);
     }
   } else {
     if (hour >= 7 && hour < 12) {
       img.src = 'images/transparent.png';
       timeMessage.textContent = "Good morning!";
-      textBlink(false);
     } else if (hour >= 12 && hour < 17) {
       img.src = 'images/aquarium.png';
       timeMessage.textContent = "Afternoon vibes!";
-      textBlink(false);
     } else if (hour >= 17 && hour < 23) {
       img.src = 'images/transparent.png';
       timeMessage.textContent = "Evening mood!";
-      textBlink(true);
     } else {
       img.src = 'images/transparent.png';
       timeMessage.textContent = "Night reflections!";
-      textBlink(false);
     }
   }
+
+  // 🔴 Control ON AIR lamp based on djActive flag
+  kroon.src = djActive ? 'images/on air.gif' : 'images/on air.png';
 }
 
-
-    window.onload = updateImage;
-    setInterval(updateImage, 3600000);
-  
-
+window.onload = updateImage;
+setInterval(updateImage, 3600000);
 </script>
-<script>
-//Get our img element by using document.getElementById
-var img = document.getElementById("kroonImage");
-
-//Set the src property of our element to the new image URL
-img.src = 'images/on air.gif';
-</script>
-
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
