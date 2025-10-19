@@ -6,19 +6,42 @@
   <title></title>
   <link rel="stylesheet" href="style3.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Optional: ensure images are visible */
+    #kroonImage, #myImage { display: block; max-width: 100%; }
+    .blink { animation: blink 1s step-start infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+  </style>
 </head>
 <body>
   <br><br><br><br>
-  <img id="kroonImage" alt="">
-  <img id="myImage" alt="">
+  <img id="kroonImage" alt="ON AIR lamp">
+  <img id="myImage" alt="Program image">
   <p id="timeMessage"></p>
 
   <script>
-    function updateImage() {
-      const timeMessage = document.getElementById("timeMessage"); 
-      const img = document.getElementById("myImage");
+    function safeSrc(path) {
+      // Encode spaces to avoid 404 on some servers
+      return path.replace(/ /g, '%20');
+    }
 
- const now = new Date();
+    function updateImage() {
+      const timeMessage = document.getElementById("timeMessage");
+      const img = document.getElementById("myImage");
+      const kroon = document.getElementById("kroonImage");
+
+      if (!timeMessage || !img || !kroon) {
+        console.error("❌ Missing required DOM elements:", { timeMessage, img, kroon });
+        return;
+      }
+
+      // Fallback for program image load errors
+      img.onerror = () => {
+        console.warn("⚠️ Program image failed to load, falling back to transparent.png");
+        img.src = safeSrc('images/transparent.png');
+      };
+
+      const now = new Date();
       const hour = now.getHours();
       const day = now.getDay();
 
@@ -27,82 +50,81 @@
         (day === 5 && hour >= 18) ||
         (day === 0 && hour < 21);
 
-      // helper for blink control (text only)
       function textBlink(shouldBlink) {
-        if (shouldBlink) {
-          timeMessage.classList.add('blink');
-        } else {
-          timeMessage.classList.remove('blink');
-        }
+        timeMessage.classList.toggle('blink', !!shouldBlink);
       }
+
+      let djActive = false;
+
+      console.log(`⏱️ Time: day=${day} hour=${hour} | isWeekend=${isWeekend}`);
 
       if (isWeekend) {
         if (hour >= 7 && hour < 12) {
-          img.src = 'images/aquarium3.gif'; 
+          img.src = safeSrc('images/aquarium3.gif');
           timeMessage.textContent = "Good morning!";
           textBlink(false);
+          djActive = true;
+          console.log("🎬 Weekend morning: aquarium3.gif, DJ active");
         } else if (hour >= 12 && hour < 17) {
-          img.src = 'images/Sunny rock.gif';
+          img.src = safeSrc('images/Sunny rock.gif');
           timeMessage.textContent = "Hillbillies!";
           textBlink(true);
+          djActive = true;
+          console.log("🎬 Weekend midday: Sunny rock.gif, DJ active");
         } else if (hour >= 17 && hour < 21) {
-          img.src = 'images/Bjorn Hamburger.png';
+          img.src = safeSrc('images/Bjorn Hamburger.png');
           timeMessage.textContent = "Björn Hamburger";
           textBlink(true);
+          djActive = true;
+          console.log("🎬 Weekend evening: Bjorn Hamburger.png, DJ active");
         } else if (hour >= 21 && hour < 23) {
-          img.src = 'images/Sunny rock.gif';
+          img.src = safeSrc('images/Sunny rock.gif');
           timeMessage.textContent = "Hillbillies!";
           textBlink(true);
+          djActive = true;
+          console.log("🎬 Weekend late: Sunny rock.gif, DJ active");
         } else {
-          img.src = 'images/aquarium.png';
+          img.src = safeSrc('images/aquarium.png');
           timeMessage.textContent = "Good night!";
           textBlink(false);
+          console.log("🌙 Weekend night: aquarium.png, DJ inactive");
         }
       } else {
         if (hour >= 7 && hour < 12) {
-          img.src = 'images/transparent.png';
+          img.src = safeSrc('images/transparent.png');
           timeMessage.textContent = "Good morning!";
           textBlink(false);
+          console.log("☀️ Weekday morning: transparent.png, DJ inactive");
         } else if (hour >= 12 && hour < 17) {
-          img.src = 'images/transparent.png';
+          img.src = safeSrc('images/transparent.png');
           timeMessage.textContent = "Afternoon vibes!";
           textBlink(false);
+          console.log("🌤️ Weekday afternoon: transparent.png, DJ inactive");
         } else if (hour >= 17 && hour < 23) {
-          img.src = 'images/transparent.png';
+          img.src = safeSrc('images/transparent.png');
           timeMessage.textContent = "Evening mood!";
           textBlink(true);
+          console.log("🌆 Weekday evening: transparent.png, DJ inactive");
         } else {
-          img.src = 'images/aquarium3.gif';
+          img.src = safeSrc('images/aquarium3.gif');
           timeMessage.textContent = "Night reflections!";
           textBlink(false);
+          console.log("🌙 Weekday night: aquarium3.gif, DJ inactive");
         }
       }
+
+      // ON AIR lamp
+      const lampSrc = djActive ? 'images/on air.gif' : 'images/on air.png';
+      kroon.onerror = () => {
+        console.warn("⚠️ ON AIR image failed to load:", lampSrc);
+      };
+      kroon.src = safeSrc(lampSrc);
+      console.log(`🔌 ON AIR lamp: ${djActive ? 'GIF (active)' : 'PNG (inactive)'} -> ${safeSrc(lampSrc)}`);
     }
 
-    window.onload = updateImage;
-    setInterval(updateImage, 3600000);
-  
-
-</script>
-<script>
-//Get our img element by using document.getElementById
-var img = document.getElementById("kroonImage");
-
-//Set the src property of our element to the new image URL
-img.src = 'images/crown2.png';
-</script>
-
+    // Run immediately and then every minute to catch hour/minute changes
+    window.addEventListener('load', updateImage);
+    setInterval(updateImage, 60000);
+  </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
