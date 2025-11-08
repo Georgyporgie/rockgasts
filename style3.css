@@ -1,55 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Moonrocks&display=swap');
+
 #myImage  {    filter:brightness(100%) saturation(100%) contrast(100%) opacity(75%);width: 235px; height: 145px; margin-right: -105px; display: block; margin: auto auto auto auto ; border: solid #555555 3px; z-index: 200; border-radius: 50px;
 
     
           }
 
-
-
-
 #marquee {
-  display:block;
+  display: block;
   width: 175px;
-  margin: auto auto auto auto;
-
+  margin: auto;
   overflow: hidden;
   white-space: nowrap;
 }
+
 #marquee span {
-  display: inline-block; font-style: italic;
-  font-size: 15px;font-family: Arial ,Helvetica,sans-serif;
-  position: relative; color:#050202;
-  left: 100%;background-color: #FFCC99;border-radius:5px;
-
+  position: relative;
+  font-family: 'Rubik Moonrocks', cursive;
+  font-size: 18px;
+  color: #FFD700;
   animation: marquee 8s linear infinite;
-
+  text-shadow: 2px 2px 4px #ff69b4;
+  background: linear-gradient(to right, #ff8c00, #ff69b4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
-
-
 
 #marquee:hover span {
   animation-play-state: paused;
 }
 
-#marquee span:nth-child(1) {
-  animation-delay: 0s;
-}
-#marquee span:nth-child(2) {
-  animation-delay: 0.8s;
-}
-#marquee span:nth-child(3) {
-  animation-delay: 1.6s;
-}
-#marquee span:nth-child(4) {
-  animation-delay: 2.4s;
-}
-#marquee span:nth-child(5) {
-  animation-delay: 3.2s;
-}
+#marquee span:nth-child(1) { animation-delay: 0s; }
+#marquee span:nth-child(2) { animation-delay: 0.8s; }
+#marquee span:nth-child(3) { animation-delay: 1.6s; }
+#marquee span:nth-child(4) { animation-delay: 2.4s; }
+#marquee span:nth-child(5) { animation-delay: 3.2s; }
 
 @keyframes marquee {
   0%   { left: 100%; }
   100% { left: -100%; }
 }
+
+
+
 
 
 #timeMessage  {  
@@ -86,8 +78,49 @@
 
 
 
-#kroonImage  {  width: 70px;  height: 30px;filter: brightness(100%) saturate(105%) contrast(110%)opacity (75%);display: block; margin: auto auto auto auto; z-index:-600;
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* spreads items across full width */
+  gap: 10px;
+  padding: 8px 16px;
+  background: linear-gradient(to bottom, #5C4033, #4B3621);
+  border-bottom: 2px solid #2F1B0C;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+  color: #fff;
 }
+
+
+
+#kroonImage {
+  height: 30px;
+  width: auto;
+}
+
+#clock {
+  display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
