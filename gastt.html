@@ -104,7 +104,7 @@
           img.src=safeSrc('images/Bjorn Hamburger.png');
           timeMessage.textContent="";
           timeMessage.classList.add('blink');
-          djActive=false;
+          djActive=true;
         }else{
           img.src=safeSrc('images/Sunny rock.gif');
           timeMessage.textContent="";
@@ -115,7 +115,7 @@
         img.src=safeSrc('images/transparent.png');
         timeMessage.textContent="";
         timeMessage.classList.remove('blink');
-      djActive = true;
+      djActive = false;
       }
 
       // ON AIR lamp
@@ -167,6 +167,7 @@
   </script>
 </body>
 </html>
+
 
 
 
