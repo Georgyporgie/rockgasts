@@ -87,7 +87,7 @@
   background: linear-gradient(to bottom, #5C4033, #4B3621);
   border-bottom: 2px solid #2F1B0C;
   box-shadow: 0 2px 6px rgba(0,0,0,0.4);
- border-bottom: 4px solid #6166A;
+ border: solid 5px #6166A ;
 }
 
 
@@ -100,6 +100,7 @@
 #clock {
   display: block;
 }
+
 
 
 
