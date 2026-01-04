@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik+Moonrocks&display=swap');
 
-#myImage  {    filter:brightness(100%) saturation(95%) contrast(100%) opacity(75%);width: 235px; height: 145px; margin-right: -105px; display: block; margin: auto auto auto auto ; border: solid #555555 3px; z-index: 400; border-radius: 50px;
+#myImage  {    filter:brightness(105%) saturation(105%) contrast(105%) opacity(75%);width: 235px; height: 145px; margin-right: -105px; display: block; margin: auto auto auto auto ; border: solid #555555 3px; z-index: 400; border-radius: 50px;
 
     
           }
@@ -90,6 +90,7 @@
 #clock {
   display: block;
 }
+
 
 
 
