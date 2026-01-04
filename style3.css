@@ -83,13 +83,14 @@
 
 
 #kroonImage {
-  height: 30px;
+  height: 30px;  filter:brightness(105%) saturation(105%) contrast(105%);
   width: auto;
 }
 
 #clock {
   display: block;
 }
+
 
 
 
