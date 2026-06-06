@@ -4,7 +4,7 @@
   }
 
 
-#myVideo  {    filter:brightness(105%) saturation(105%) contrast(105%) opacity(75%);width: 235px; height: 134px; margin-right: -105px; display: block; margin: auto auto auto auto ; border: solid #555555 3px; z-index: 400; border-radius: 50px;
+#myVideo  {    filter:brightness(105%) saturation(105%) contrast(105%) opacity(75%);width: 235px; height: 135px; margin-right: -105px; display: block; margin: auto auto auto auto ; border: solid #555555 3px; z-index: 400; border-radius: 50px;
 
     
           }
