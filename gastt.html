@@ -128,26 +128,26 @@
       if (isWeekend) {
         if (hour >= 12 && hour < 17) {
           showImage('images/transparent.png');
-          timeMessage.textContent = "";
+          timeMessage.textContent = "Good afternoon!";
           timeMessage.classList.add('blink');
           djActive = true;
 
         } else if (hour >= 17 && hour < 21) {
          showImage('images/Bjorn Hamburger.png');
-          timeMessage.textContent = "";
+          timeMessage.textContent = "Good evening!";
           timeMessage.classList.add('blink');
           djActive = true;
 
         } else {
           showVideo('images/Sunnyrock.webm');
-          timeMessage.textContent = "";
+          timeMessage.textContent = "Good night!";
           timeMessage.classList.remove('blink');
           djActive = true;
         }
 
       } else {
         showImage('images/Bjorn Hamburger.png');
-        timeMessage.textContent = "";
+        timeMessage.textContent = "Good day!";
         timeMessage.classList.remove('blink');
         djActive = true;
       }
